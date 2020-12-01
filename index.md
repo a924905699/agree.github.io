@@ -1,37 +1,59 @@
-## Welcome to GitHub Pages
+# 									日志埋点模型
 
-You can use the [editor on GitHub](https://github.com/a924905699/agree.github.io/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+## **启动埋点**
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+<!--表中字段如无法取得或为空值，直接传空字符串即可-->
 
-```markdown
-Syntax highlighted code block
+| 序号 | 示例                                                         | 字段含义                                                     |
+| ---- | ------------------------------------------------------------ | :----------------------------------------------------------- |
+| 00   | N-START                                                      | 日志头，固定为N-START                                        |
+| 01   | 2018-12-19 10:35:47                                          | 服务端日志时间。该字段由服务端填入，客户端日志中不包含此字段 |
+| 02   | ip=182.11.111.7^country=中国^province=北京市^city=北京市^district=朝阳区 | 包含服务端请求 ip、国家、省份、城市等信息。由服务端填入，客户端日志中不包含此字段 |
+| 03   | 2018-12-19 10:35:47                                          | 客户端日志时间                                               |
+| 04   | A111111111111_IOS-default                                    | 格式：后台创建的应用ID_应用平台-workspaceId                  |
+| 05   | 1.0.1                                                        | 客户端版本，即应用版本                                       |
+| 06   | 411111111111111\|8111111111                                  | 格式：[IMSI](https://en.wikipedia.org/wiki/International_mobile_subscriber_identity)\|[IMEI](https://en.wikipedia.org/wiki/International_Mobile_Equipment_Identity) |
+| 07   | d5557b75-ff80-4aab-86a6-9b1a522bbbce                         | 会话ID                                                       |
+| 08   | user11                                                       | 客户端 C 端用户注册后产生的 ID，即用户 ID                    |
+| 09   | 3785                                                         | 启动速度，单位：毫秒                                         |
+| 10   | 1                                                            | 是否首次启动：0 首次，1 非首次                               |
+| 11   | 1                                                            | 操作系统类别    1代表安卓，2代表IOS，3代表全平台             |
+| 12   | 4.4.2                                                        | 操作系统版本                                                 |
+| 13   | WIFI                                                         | 网络类型，如： WIFI、2G、3G、4G                              |
+| 14   | HUAWEI                                                       | 设备型号                                                     |
+| 15   | goose                                                        | 渠道号                                                       |
+| 16   | Wn1111111111111111111QxL                                     | 设备 ID                                                      |
+| 17   | zh-CN                                                        | 操作系统语言                                                 |
+| 18   | 4                                                            | CPU 核数                                                     |
+| 19   | 2265                                                         | CPU 最大频率，单位：MHZ                                      |
+| 20   | 2853                                                         | 内存大小，单位：MB                                           |
+| 21   | 0                                                            | 热修复包版本号                                               |
+| 22   | 2560x1440                                                    | 屏幕分辨率                                                   |
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+## 闪退埋点
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+| 序号 | 实例                                                         | 字段含义                                                     |
+| ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 00   | E-CRASH                                                      | 日志头，固定为E-CRASH                                        |
+| 01   | 2018-12-19 10:35:47.996                                      | 服务端日志时间。该字段由服务端填入，客户端日志中不包含此字段 |
+| 02   | ip=182.11.111.7^country=中国^province=北京市^city=北京市^district=朝阳区 | 包含服务端请求 IP、国家、省份、城市等信息。由服务端填入，客户端日志中不包含此字段 |
+| 03   | 2018-12-19 10:35:47.196                                      | 客户端日志时间                                               |
+| 04   | A111111111111_IOS-default                                    | 格式：后台创建的应用ID_应用平台-workspaceId                  |
+| 05   | 1.0.1                                                        | 客户端版本，即应用版本                                       |
+| 06   | 411111111111111\|8111111111111                               | 格式：[IMSI](https://en.wikipedia.org/wiki/International_mobile_subscriber_identity)\|[IMEI](https://en.wikipedia.org/wiki/International_Mobile_Equipment_Identity) |
+| 07   | d5557b75-ff80-4aab-86a6-9b1a522bbbce                         | 会话 ID                                                      |
+| 08   | user11                                                       | 客户端 C 端用户注册后产生的 ID，即用户 ID                    |
+| 09   | java.lang.RuntimeException:xx                                | 异常堆栈                                                     |
+| 10   | goose                                                        | 渠道号                                                       |
+| 11   | iPhone12                                                     | 设备型号                                                     |
+| 12   | 4.4.2                                                        | 操作系统版本                                                 |
+| 13   | WIFI                                                         | 网络类型，如： WIFI、2G、3G、4G                              |
 
-### Jekyll Themes
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/a924905699/agree.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
